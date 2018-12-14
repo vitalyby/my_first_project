@@ -27,15 +27,21 @@ print('--------количество людей на борту')
 print(df.count())
 
 # 3. Узнайте сколько на борту было мужчин.
+
+print('--------выжили по полу')
+print(df[(df['Sex'] == 'male')].count())
+print(df[(df['Sex'] == 'female')].count())
+
 print('--------выжили по полу и полю имени')
 print(df.groupby(['Sex', 'Survived'])['Name'].count())
+
 print('--------выжили по полу и всем полям')
 print(df.groupby(['Sex', 'Survived']).count())
 
 # 4. Посчитайте процент выживших на борту.
 #
 print('--------процент выживших')
-cnt = df.groupby(['Survived'])['Name'].count().sum()
+cnt = 342 #df.groupby(['Survived'])['Survived'].count().sum()
 print('--------число выживших', cnt)
 print(df.groupby(['Survived'])['Name'].count())
 print(df.groupby(['Survived'])['Name'].count() / cnt * 100)
@@ -46,10 +52,10 @@ print(df.groupby(['Sex'])['Name'].count())
 
 # 6. Посчитайте сколько процентов из выживших были мужчинами?
 print('--------число выживших по полу')
-print(df.groupby(['Sex', 'Survived'])['Name'].count() / cnt * 100)
+print(df.groupby(['Sex', 'Survived'])['Survived'].count() / cnt * 100)
 # 7. Человек какого класса вероятнее всего не выжил ?
 #
 print('--------по классу')
-print(df.groupby(['Pclass', 'Survived'])['Name'].count())
+print(df.groupby(['Pclass', 'Survived'])['Survived'].count())
 print('--------по классу процент')
 print(df.groupby(['Pclass', 'Survived'])['Name'].count() / cnt * 100)
